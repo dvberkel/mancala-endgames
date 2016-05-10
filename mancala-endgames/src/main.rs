@@ -1,23 +1,23 @@
 use std::fmt;
 
 struct Mancala {
-    pub position: Vec<u8>,
+    pub position: Vec<i32>,
 }
 
-fn perfect_position(n: u8) -> Mancala {
-    if n == 1 {
+fn perfect_position(n: i32) -> Mancala {
+    if n == 0 {
         Mancala { position: vec![1] }
     } else {
-        let mut position: Vec<u8> = perfect_position(n - 1).position.to_vec();
-        position.push(n);
+        let mut position: Vec<i32> = perfect_position(n - 1).position.to_vec();
+        position.push(n + 1);
         decrement_below(n, &mut position);
         Mancala { position: position }
     }
 }
 
-pub fn decrement_below(n: u8, position: &mut Vec<u8>) {
+pub fn decrement_below(n: i32, position: &mut Vec<i32>) {
     let mut index = n;
-    while index > (0 as u8) {
+    while index > 0  {
         index -= 1;
         position[index as usize] -= 1;
     }
@@ -34,7 +34,7 @@ impl fmt::Display for Mancala {
 }
 
 fn main() {
-    let endgame = perfect_position(2);
+    let endgame = perfect_position(1);
 
     println!("{}", endgame);
 }
