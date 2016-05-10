@@ -4,6 +4,10 @@ struct Mancala {
     pub position: Vec<u16>,
 }
 
+fn perfect_position(n: u8) -> Mancala {
+    Mancala { position: vec![1] }
+}
+
 impl fmt::Display for Mancala {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "[").unwrap();
@@ -15,7 +19,7 @@ impl fmt::Display for Mancala {
 }
 
 fn main() {
-    let endgame = Mancala { position: vec![1, 2, 3, 4] };
+    let endgame = perfect_position(1);
 
     println!("{}", endgame);
 }
