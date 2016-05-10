@@ -1,7 +1,7 @@
 use std::fmt;
 
 struct Mancala {
-    pub position: Vec<i32>,
+    pub position: Vec<u16>,
 }
 
 impl fmt::Display for Mancala {
