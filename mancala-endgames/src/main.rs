@@ -66,9 +66,11 @@ impl fmt::Display for Mancala {
 }
 
 fn main() {
-    let endgame = perfect_position(1);
+    for n in 0..40 {
+        let endgame = perfect_position(n);
 
-    println!("{}", endgame);
+        println!("{:>3}: {}", n+1, endgame);
+    }
 }
 
 #[cfg(test)]
