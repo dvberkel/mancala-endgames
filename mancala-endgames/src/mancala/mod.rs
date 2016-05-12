@@ -14,11 +14,11 @@ impl fmt::Display for Mancala {
     }
 }
 
-pub fn perfect_position(n: i32) -> Mancala {
+pub fn perfect_game(n: i32) -> Mancala {
     if n == 0 {
         Mancala { position: vec![1] }
     } else {
-        let mut position: Vec<i32> = perfect_position(n - 1).position.to_vec();
+        let mut position: Vec<i32> = perfect_game(n - 1).position.to_vec();
         position.push(n + 1);
         decrement_below(n, &mut position);
         fill_zeros_below(n, &mut position);
@@ -52,7 +52,7 @@ pub fn fill_zero_at(index: i32, position: &mut Vec<i32>) {
             prefix_index += 1;
         }
         prefix_index -= 1;
-        let prefix: Vec<i32> = perfect_position(prefix_index).position.to_vec();
+        let prefix: Vec<i32> = perfect_game(prefix_index).position.to_vec();
         while prefix_index >= 0 {
             let i = prefix_index as usize;
             position[i] = prefix[i];
@@ -107,12 +107,12 @@ mod tests {
 
     #[test]
     fn perfect_position_should_work_correctly() {
-        assert_eq!(vec![1], perfect_position(0).position.to_vec());
+        assert_eq!(vec![1], perfect_game(0).position.to_vec());
 
-        assert_eq!(vec![1, 2], perfect_position(1).position.to_vec());
+        assert_eq!(vec![1, 2], perfect_game(1).position.to_vec());
 
-        assert_eq!(vec![1, 1, 3], perfect_position(2).position.to_vec());
+        assert_eq!(vec![1, 1, 3], perfect_game(2).position.to_vec());
 
-        assert_eq!(vec![1, 2, 2, 4], perfect_position(3).position.to_vec());
+        assert_eq!(vec![1, 2, 2, 4], perfect_game(3).position.to_vec());
    }
 }
